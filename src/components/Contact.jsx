@@ -23,7 +23,7 @@ function Contact () {
       <AddContactModal closeOpenModal={closeOpenModal} open={open} />
       <ContactHeader closeOpenModal={closeOpenModal} />
       <ContactList addContactModalState={open} />
-      <button onClick={openOrCloseModal} className='bg-green-600 hover:bg-green-500 rounded-full p-3 text-white text-lg absolute bottom-10 right-5  shadow'> <FaUserPlus /> </button>
+      <button onClick={openOrCloseModal} className='bg-green-600 hover:bg-green-500 rounded-full p-3 text-white text-lg absolute bottom-20 right-5  shadow'> <FaUserPlus /> </button>
     </div>
   )
 }
