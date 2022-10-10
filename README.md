@@ -1,2 +1,2 @@
 # phone-book
-# Modern and response Phonebook Which lets you store, search, edit , delete and add contact on the web
+# Modern and responsive Phonebook which lets you store, search, edit , delete and add contact on the web
