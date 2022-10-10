@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import avatarImg from "../images/avatar.png"
 import ContactItem from './ContactItem'
 import { FaExclamationCircle } from "react-icons/fa"
-
+import ContactContext from '../context/ContactContext'
 
 function EmptyList () {
   return (
@@ -16,15 +16,11 @@ function EmptyList () {
 
 // main component
 function ContactList ({ addContactModalState }) {
-  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? [])
-  useEffect(() => {
-    const data = JSON.parse(window.localStorage.getItem('contacts')) ?? []
-    setContacts(data)
-  }, [addContactModalState])
+  const [contacts, setContacts] = useContext(ContactContext)
+  const sortedContacts = contacts?.sort((a, b) => a.name.localeCompare(b.name))
 
-
-  const list = contacts?.map((contact, index) => {
-    return <ContactItem name={contact.name} number={contact.phoneNumber} img={avatarImg} id={index} setContacts={setContacts} key={index} />
+  const list = sortedContacts?.map((contact, index) => {
+    return <ContactItem name={contact.name} number={contact.phoneNumber} img={avatarImg} id={index} key={index} />
   })
   return (
     <div id='contact-list' className={`h-96  p-4 overflow-y-scroll ${addContactModalState && "hidden"}`}>
