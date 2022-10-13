@@ -18,7 +18,7 @@ function ModalButtons ({ closeOpenModal }) {
 
 function AddContactModal ({ open, closeOpenModal }) {
 
-  const [, , , , contactInputs, setContactInputs, saveDetails] = useContext(ContactContext)
+  const [contacts, , , , contactInputs, setContactInputs, saveDetails] = useContext(ContactContext)
 
 
   const handleInputChange = (event) => {
