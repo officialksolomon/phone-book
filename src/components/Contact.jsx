@@ -26,7 +26,6 @@ function Contact () {
   }
   // 
   const closeOpenModal = (event) => {
-    window.localStorage.clear()
     isOpen === true ? setIsOpen(!isOpen) : ''
     setContactInputs({ name: '', phoneNumber: '' })
   }
