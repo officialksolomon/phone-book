@@ -10,6 +10,9 @@ const saveContact = (contactInputs, setContactInputs, saveDetails) => {
     window.localStorage.setItem('contacts', JSON.stringify({ ...previousContacts, [contactInputs.name]: contactInputs }))
 
   }
+
+
+
 }
 
 export default saveContact

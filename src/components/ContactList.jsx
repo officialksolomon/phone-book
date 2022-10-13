@@ -17,7 +17,7 @@ function NoMatch () {
   return (
     <div className='flex flex-col place-items-center opacity-90 mt-5'>
       <FaExclamationCircle className='text-red-500' size={50} />
-      <p className='text-center text-red-500  text-xs'>No match found..</p>
+      <p className='text-center text-red-500  text-xs'>No match found. <br /> Try a different keyword.</p>
     </div>
   )
 }
