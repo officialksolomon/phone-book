@@ -16,7 +16,7 @@ function Contact () {
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem('contacts')) ?? {}
     setContacts(data)
-    
+
   }, [isOpen])
 
   // 
@@ -26,8 +26,9 @@ function Contact () {
   }
   // 
   const closeOpenModal = (event) => {
+    window.localStorage.clear()
     isOpen === true ? setIsOpen(!isOpen) : ''
-    setContactInputs({name: '', phoneNumber: '' })
+    setContactInputs({ name: '', phoneNumber: '' })
   }
 
   const contextValues = [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, saveDetails, setSaveDetails, searchTerm, setSearchTerm]
