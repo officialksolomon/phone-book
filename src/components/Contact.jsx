@@ -9,11 +9,14 @@ import ContactContext from '../context/ContactContext'
 function Contact () {
   const [isOpen, setIsOpen] = useState(false)
   const [contactInputs, setContactInputs] = useState({ name: '', phoneNumber: '' })
-  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? [])
+  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? {})
+  const [searchTerm, setSearchTerm] = useState('')
   const [saveDetails, setSaveDetails] = useState({ name: 'create', id: null })
+
   useEffect(() => {
-    const data = JSON.parse(window.localStorage.getItem('contacts')) ?? []
+    const data = JSON.parse(window.localStorage.getItem('contacts')) ?? {}
     setContacts(data)
+    
   }, [isOpen])
 
   // 
@@ -24,11 +27,13 @@ function Contact () {
   // 
   const closeOpenModal = (event) => {
     isOpen === true ? setIsOpen(!isOpen) : ''
+    setContactInputs({name: '', phoneNumber: '' })
   }
 
+  const contextValues = [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, saveDetails, setSaveDetails, searchTerm, setSearchTerm]
   return (
-    <ContactContext.Provider value={[contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, saveDetails, setSaveDetails]}>
-      <div id='contact' className='w-full h-full sm:w-1/2+ md:w-1/3 lg:w-1/4  bg-white shadow-lg relative'>
+    <ContactContext.Provider value={contextValues}>
+      <div id='contact' className='w-full h-full sm:w-1/2 md:w-1/3 lg:w-1/4  bg-white shadow-lg relative'>
         <AddContactModal closeOpenModal={closeOpenModal} open={isOpen} />
         <ContactHeader closeOpenModal={closeOpenModal} />
         <ContactList addContactModalState={isOpen} />

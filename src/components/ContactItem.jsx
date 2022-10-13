@@ -2,22 +2,22 @@ import React, { useContext } from 'react'
 import { MdDelete, MdEdit } from "react-icons/md"
 import ContactContext from '../context/ContactContext'
 
-function ContactItem ({ name, number, img, id }) {
+function ContactItem ({ name, number, img }) {
   const [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, , setSaveDetails] = useContext(ContactContext)
 
 
 
   const editContact = () => {
-    const currentContact = contacts?.slice(id, id + 1)
-    setContactInputs({ name: currentContact[0].name, phoneNumber: currentContact[0].phoneNumber })
-    setSaveDetails({ name: 'edit', id: id })
+    const currentContact = contacts[name]
+    setSaveDetails({ name: 'edit', id: name })
+    setContactInputs({ name: currentContact.name, phoneNumber: currentContact.phoneNumber })
     setIsOpen(!isOpen)
   }
 
   const deleteContact = () => {
-    const contacts = JSON.parse(window.localStorage.getItem('contacts')) ?? []
+    const contacts = JSON.parse(window.localStorage.getItem('contacts')) ?? {}
     if (contacts) {
-      contacts.splice(id, 1)
+      delete contacts[name]
       window.localStorage.setItem('contacts', JSON.stringify(contacts))
       setContacts(JSON.parse(window.localStorage.getItem('contacts')))
     }

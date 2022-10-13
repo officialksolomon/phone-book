@@ -13,18 +13,27 @@ function EmptyList () {
   )
 }
 
+function NoMatch () {
+  return (
+    <div className='flex flex-col place-items-center opacity-90 mt-5'>
+      <FaExclamationCircle className='text-red-500' size={50} />
+      <p className='text-center text-red-500  text-xs'>No match found..</p>
+    </div>
+  )
+}
+
 
 // main component
 function ContactList ({ addContactModalState }) {
-  const [contacts, setContacts] = useContext(ContactContext)
-  const sortedContacts = contacts?.sort((a, b) => a.name.localeCompare(b.name))
-
-  const list = sortedContacts?.map((contact, index) => {
-    return <ContactItem name={contact.name} number={contact.phoneNumber} img={avatarImg} id={index} key={index} />
+  const [contacts, setContacts, , , , , , , searchTerm] = useContext(ContactContext)
+  let sortedContacts = Object.keys(contacts).sort((a, b) => a.localeCompare(b))
+  let filteredContacts = sortedContacts.filter((contact) => contact.includes(searchTerm))
+  const list = filteredContacts.map((key, index) => {
+    return <ContactItem name={contacts[key].name} number={contacts[key].phoneNumber} img={avatarImg} key={index} />
   })
   return (
     <div id='contact-list' className={`h-96  p-4 overflow-y-scroll ${addContactModalState && "hidden"}`}>
-      {list.length ? list : <EmptyList />}
+      {list.length ? list : searchTerm ? <NoMatch /> : <EmptyList />}
     </div >
   )
 }

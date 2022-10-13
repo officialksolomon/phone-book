@@ -17,6 +17,7 @@ function ModalButtons ({ closeOpenModal }) {
 
 
 function AddContactModal ({ open, closeOpenModal }) {
+
   const [, , , , contactInputs, setContactInputs, saveDetails] = useContext(ContactContext)
 
 
@@ -28,12 +29,12 @@ function AddContactModal ({ open, closeOpenModal }) {
   }
 
 
-
   const handleSubmit = (event) => {
     event.preventDefault()
     saveContact(contactInputs, setContactInputs, saveDetails)
     closeOpenModal(event)
   }
+
 
   return (
     <div className={`${open ? '' : 'hidden'} absolute z-50 top-1/3 w-full h-auto  flex flex-col place-content-center p-5   animate__animated animate__fadeInUp  animate__faster`}>
