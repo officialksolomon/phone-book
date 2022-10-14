@@ -48,9 +48,9 @@ function AddContactModal ({ open, closeOpenModal }) {
         <p className='text-xs font-bold px-3'> {saveDetails.name === 'create' ? ' Add New Contact' : 'Edit Contact'}</p>
 
         <input onChange={(event) => handleInputChange(event)} type="text" name='name' value={contactInputs.name ?? ""} placeholder='Name' required className='bg-gray-100 m-2 rounded-full p-1 px-4 placeholder:text-xs focus:outline focus:outline-1 focus:outline-green-500' />
-        <p className='text-x text-red-500 font-bold m-0 p-0 px-4 flex place-content-center'> {inputErrors.name && 'Contact with same name already exist. Choose a different name.'}</p>
+        <p className='text-x text-red-500 font-bold m-0 p-0 px-4 flex place-content-center'> {inputErrors.name && saveDetails.name === 'create' ? 'Contact with same name already exist. Choose a different name.' : ''}</p>
         <input onChange={(event) => handleInputChange(event)} type="number" name='phoneNumber' value={contactInputs.phoneNumber ?? ""} placeholder='Phone number' required className='bg-gray-100 m-2 rounded-full p-1 px-4 placeholder:text-xs focus:outline focus:outline-1 focus:outline-green-500' />
-        <p className='text-x text-red-500 font-bold m-0 p-0 px-4 flex place-content-center'>{inputErrors.phoneNumber && 'Contact with same name already exist. Choose a different name.'}</p>
+        <p className='text-x text-red-500 font-bold m-0 p-0 px-4 flex place-content-center'> {inputErrors.phoneNumber && saveDetails.name === 'create' ? 'Contact with same name already exist. Choose a different name.' : ''}</p>
         <div className='flex justify-between p-3'>
           <button onClick={(event) => closeOpenModal(event)} id='discard' className='p-2 px-4 w-2/3 border border-red-600 text-red-600 focus:bg-red-600 
           hover:text-white hover:bg-red-500 rounded-full outline-none focus:text-white text-sm mr-3'>Discard</button>
