@@ -10,7 +10,6 @@ function Contact () {
   const [isOpen, setIsOpen] = useState(false)
   const [contactInputs, setContactInputs] = useState({ name: '', phoneNumber: '' })
   const [inputErrors, setInputErrors] = useState({ name: '', phoneNumber: '' })
-
   const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? {})
   const [searchTerm, setSearchTerm] = useState('')
   const [saveDetails, setSaveDetails] = useState({ name: 'create', id: null })
@@ -18,13 +17,12 @@ function Contact () {
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem('contacts')) ?? {}
     setContacts(data)
-
-
   }, [isOpen])
 
   // 
   const openOrCloseModal = () => {
     setSaveDetails({ name: 'create', id: null })
+    setInputErrors({ name: '', phoneNumber: '' })
     setIsOpen(!isOpen)
 
   }
@@ -34,9 +32,11 @@ function Contact () {
     setInputErrors({ name: '', phoneNumber: '' })
     isOpen === true ? setIsOpen(!isOpen) : ''
 
+
   }
 
-  const contextValues = [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, saveDetails, setSaveDetails, searchTerm, setSearchTerm, inputErrors, setInputErrors]
+  const contextValues = [contacts, setContacts, isOpen, setIsOpen, contactInputs,
+    setContactInputs, saveDetails, setSaveDetails, searchTerm, setSearchTerm, inputErrors, setInputErrors]
   return (
     <ContactContext.Provider value={contextValues}>
       <div id='contact' className='w-full h-full sm:w-1/2 md:w-1/3 lg:w-1/4  bg-white shadow-lg relative'>
