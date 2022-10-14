@@ -6,7 +6,7 @@ function ContactHeader ({ closeOpenModal }) {
 
 
   const handleChange = (event) => {
-    setSearchTerm(event?.target.value)
+    setSearchTerm(event.target.value)
   }
 
   return (
