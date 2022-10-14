@@ -19,18 +19,21 @@ function Contact () {
     const data = JSON.parse(window.localStorage.getItem('contacts')) ?? {}
     setContacts(data)
 
+
   }, [isOpen])
 
   // 
   const openOrCloseModal = () => {
-    setIsOpen(!isOpen)
     setSaveDetails({ name: 'create', id: null })
+    setIsOpen(!isOpen)
+
   }
   // 
   const closeOpenModal = (event) => {
+    setContactInputs({ name: '', phoneNumber: '' })
+    setInputErrors({ name: '', phoneNumber: '' })
     isOpen === true ? setIsOpen(!isOpen) : ''
-    // setContactInputs({ name: '', phoneNumber: '' })
-   
+
   }
 
   const contextValues = [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, saveDetails, setSaveDetails, searchTerm, setSearchTerm, inputErrors, setInputErrors]
