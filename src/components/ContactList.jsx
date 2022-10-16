@@ -27,7 +27,7 @@ function NoMatch () {
 function ContactList ({ addContactModalState }) {
   const [contacts, setContacts, , , , , , , searchTerm] = useContext(ContactContext)
   let sortedContacts = Object.keys(contacts).sort((a, b) => a.localeCompare(b))
-  let filteredContacts = sortedContacts.filter((contact) => contact.includes(searchTerm))
+  let filteredContacts = sortedContacts.filter((contact) => contact.toLowerCase().includes(searchTerm.toLowerCase()))
   const list = filteredContacts.map((key, index) => {
     return <ContactItem name={contacts[key].name} number={contacts[key].phoneNumber} img={avatarImg} key={index} />
   })
