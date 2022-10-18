@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { MdDelete, MdEdit } from "react-icons/md"
 import ContactContext from '../context/ContactContext'
 
-function ContactItem ({ name, number, img }) {
+function ContactItem ({ name, number, img, id }) {
   const [contacts, setContacts, isOpen, setIsOpen, contactInputs, setContactInputs, , setSaveDetails, inputErrors, setInputErrors] = useContext(ContactContext)
 
 
@@ -12,7 +12,7 @@ function ContactItem ({ name, number, img }) {
     setSaveDetails({ name: 'edit', id: name })
     setContactInputs({ name: currentContact.name, phoneNumber: currentContact.phoneNumber })
     setIsOpen(!isOpen)
-    
+
   }
 
   const deleteContact = () => {
@@ -26,7 +26,7 @@ function ContactItem ({ name, number, img }) {
 
   return (
 
-    <div className='flex justify-start items-center mb-5 p-3 hover:bg-gray-100 border-b  animate__animated animate__fadeInUp animate__faster'>
+    <div id={id} className='flex justify-start items-center mb-5 p-3 hover:bg-gray-100 border-b  animate__animated animate__fadeInUp animate__faster'>
       <div className=' mr-2'>
         <img className='opacity-70' width={45} height={45} src={img} alt="avatar" />
       </div>

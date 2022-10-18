@@ -5,6 +5,7 @@ import ContactHeader from './ContactHeader'
 import ContactList from './ContactList'
 import AddContactModal from './AddContactModal'
 import ContactContext from '../context/ContactContext'
+import AlphabeticalScrollBar from './AlphabeticalScrollBar'
 
 function Contact () {
   const [isOpen, setIsOpen] = useState(false)
@@ -40,6 +41,8 @@ function Contact () {
   return (
     <ContactContext.Provider value={contextValues}>
       <div id='contact' className='w-full h-full sm:w-1/2 md:w-1/3 lg:w-1/4  bg-white shadow-lg relative'>
+        <AlphabeticalScrollBar />
+
         <AddContactModal closeOpenModal={closeOpenModal} open={isOpen} />
         <ContactHeader closeOpenModal={closeOpenModal} />
         <ContactList addContactModalState={isOpen} />
