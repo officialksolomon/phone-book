@@ -22,7 +22,6 @@ function AddContactModal ({ open, closeOpenModal }) {
     const name = target.name
     const value = target.value
     setContactInputs(prevState => ({ ...prevState, [name]: value }))
-    validateInputs()
 
   }
 
